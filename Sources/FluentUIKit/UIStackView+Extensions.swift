@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIStackView {
+public extension UIStackView {
 
     // MARK: - Initialization
 
