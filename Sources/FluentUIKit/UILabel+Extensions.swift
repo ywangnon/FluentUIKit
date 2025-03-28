@@ -9,6 +9,13 @@ import UIKit
 
 public extension UILabel {
     
+    static func make(text: String = "") -> Self {
+        let label = Self()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        return label
+    }
+
     // MARK: - Text & Style
 
     /// 텍스트 설정
@@ -43,6 +50,14 @@ public extension UILabel {
     @discardableResult
     func withNumberOfLines(_ lines: Int) -> Self {
         self.numberOfLines = lines
+        return self
+    }
+
+    // MARK: - Sizing
+
+    @discardableResult
+    func withSizeToFit() -> Self {
+        self.sizeToFit()
         return self
     }
 

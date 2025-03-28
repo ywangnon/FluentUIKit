@@ -17,25 +17,25 @@ public extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-
+    
     // MARK: - Visibility
-
+    
     /// 뷰의 숨김 여부 설정
     @discardableResult
     func withHidden(_ hidden: Bool) -> Self {
         isHidden = hidden
         return self
     }
-
+    
     // MARK: - Appearance
-
+    
     /// 배경색 설정
     @discardableResult
     func withBackgroundColor(_ color: UIColor) -> Self {
         backgroundColor = color
         return self
     }
-
+    
     /// 모서리 둥글기 설정
     @discardableResult
     func withCornerRadius(_ radius: CGFloat) -> Self {
@@ -43,7 +43,7 @@ public extension UIView {
         clipsToBounds = true
         return self
     }
-
+    
     /// 테두리 설정
     @discardableResult
     func withBorder(width: CGFloat, color: UIColor?) -> Self {
@@ -51,39 +51,64 @@ public extension UIView {
         layer.borderColor = color?.cgColor
         return self
     }
-
+    
     /// 투명도 설정
     @discardableResult
     func withAlpha(_ value: CGFloat) -> Self {
         alpha = value
         return self
     }
-
+    
     /// `clipsToBounds` 활성화
     @discardableResult
     func enableClipping() -> Self {
         clipsToBounds = true
         return self
     }
-
+    
+    @discardableResult
+    public func withUserInteractionEnabled(_ enabled: Bool = true) -> Self {
+        self.isUserInteractionEnabled = enabled
+        return self
+    }
+    
+    @discardableResult
+    public func withContentMode(_ mode: UIView.ContentMode) -> Self {
+        self.contentMode = mode
+        return self
+    }
+    
     // MARK: - Hierarchy
-
+    
     /// 부모 뷰에 추가
     @discardableResult
     func addToSuperview(_ view: UIView) -> Self {
         view.addSubview(self)
         return self
     }
-
+    
     /// 여러 서브뷰 추가
     @discardableResult
     func addSubviews(_ views: UIView...) -> Self {
         views.forEach { addSubview($0) }
         return self
     }
-
+    
     // MARK: - Layout
-
+    /// 둥근 모양 설정
+    @discardableResult
+    func withRounded(cornerRadius: CGFloat? = nil) -> Self {
+        self.layer.masksToBounds = true
+        if let radius = cornerRadius {
+            self.layer.cornerRadius = radius
+        } else {
+            DispatchQueue.main.async {
+                self.layer.cornerRadius = self.frame.height / 2
+            }
+        }
+        return self
+    }
+    
     /// 고정된 크기 설정
     @discardableResult
     func withSize(width: CGFloat? = nil, height: CGFloat? = nil) -> Self {
@@ -96,7 +121,7 @@ public extension UIView {
         }
         return self
     }
-
+    
     /// 커스텀 제약 조건 블록 (즉시 적용되지 않음)
     @discardableResult
     func withConstraints(_ closure: (Self) -> Void) -> Self {
@@ -104,7 +129,7 @@ public extension UIView {
         closure(self)
         return self
     }
-
+    
     /// 커스텀 제약 조건 블록 (배열 리턴 → 자동 활성화)
     @discardableResult
     func withConstraints(_ closure: (Self) -> [NSLayoutConstraint]) -> Self {
@@ -112,4 +137,11 @@ public extension UIView {
         NSLayoutConstraint.activate(closure(self))
         return self
     }
+    
+    @discardableResult
+    func withSizeToFit() -> Self {
+        self.sizeToFit()
+        return self
+    }
+
 }
