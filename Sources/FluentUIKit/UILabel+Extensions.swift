@@ -55,12 +55,6 @@ public extension UILabel {
 
     // MARK: - Sizing
 
-    @discardableResult
-    func withSizeToFit() -> Self {
-        self.sizeToFit()
-        return self
-    }
-
     /// 최소 스케일 팩터 설정
     @discardableResult
     func withMinimumScaleFactor(_ factor: CGFloat) -> Self {
