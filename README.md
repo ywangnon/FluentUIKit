@@ -24,21 +24,34 @@
 
 - ✅ Fluent, chainable syntax for UIKit components
 - ✅ Zero dependencies
-- ✅ Modular extensions: `UIView`, `UIButton`, `UILabel`, `UIImageView`, `UITextField`, `UIStackView`
+- ✅ Clean & Modular Extensions
 - ✅ Supports iOS 13+
 
 ---
 
 ## 🔧 Supported Extensions
 
-| Component     | Features Included                                                                 |
-|---------------|------------------------------------------------------------------------------------|
-| `UIView`      | `withBackgroundColor`, `withCornerRadius`, `withConstraints`, etc.                |
-| `UIButton`    | `withTitle`, `withImage`, `withUnderlineTitle`, etc.                              |
-| `UILabel`     | `withText`, `withTextColor`, `withUnderline`, etc.                                |
-| `UITextField` | `withPlaceholder`, `withSecureEntry`, `withLeftPadding`, etc.                     |
-| `UIImageView` | `withImage`, `withRenderingMode`, `withContentMode`, etc.                         |
-| `UIStackView` | `withSpacing`, `withArrangedSubviews`, `withDistribution`, etc.                   |
+| Component        | Features Included                                                                 |
+|-----------------|------------------------------------------------------------------------------------|
+| `UIView`        | `withBackgroundColor`, `withCornerRadius`, `withConstraints`, `withUserInteractionEnabled`, etc. |
+| `UIButton`      | `withTitle`, `withImage`, `withUnderlineTitle`, `withFont`, etc.                  |
+| `UILabel`       | `withText`, `withTextColor`, `withFont`, `withUnderline`, etc.                    |
+| `UITextField`   | `withPlaceholder`, `withSecureEntry`, `withLeftPadding`, `withFont`, etc.         |
+| `UIImageView`   | `withImage`, `withRenderingMode`, `withContentMode`, `withRounded`, etc.          |
+| `UIStackView`   | `withSpacing`, `withAxis`, `withArrangedSubviews`, `withDistribution`, etc.       |
+| `UISwitch`      | `withIsOn`, `withTintColor`, `withOnTintColor`, `withThumbTintColor`              |
+
+---
+
+## 🛠 Coming Soon (Planned Extensions)
+
+| Component               | Features 예정 내용 |
+|------------------------|------------------|
+| `UISlider`             | `withValue`, `withMinimumValue`, `withMaximumValue`, `withThumbTintColor`, etc. |
+| `UISegmentedControl`   | `withSegments`, `withSelectedIndex`, `withTintColor` |
+| `UITextView`           | `withText`, `withFont`, `withTextColor`, `withPlaceholder` |
+| `UIPageControl`        | `withNumberOfPages`, `withCurrentPage`, `withPageIndicatorTintColor`, etc. |
+| `UIScrollView`         | `withIsPagingEnabled`, `withShowsHorizontalScrollIndicator`, `withContentInset`, etc. |
 
 ---
 
