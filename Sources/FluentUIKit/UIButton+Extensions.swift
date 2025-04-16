@@ -8,6 +8,10 @@
 import UIKit
 
 public extension UIButton {
+    enum ImageSide {
+        case left
+        case right
+    }
 
     // MARK: - Initialization
 
@@ -121,5 +125,84 @@ public extension UIButton {
         let attributed = NSAttributedString(string: text, attributes: attributes)
         setAttributedTitle(attributed, for: state)
         return self
+    }
+
+    // MARK: - Image Layout
+
+    /// 이미지를 버튼의 왼쪽 또는 오른쪽에 배치하고 패딩을 설정
+    @discardableResult
+    func withImageOnSide(
+        _ side: ImageSide,
+        image: UIImage,
+        padding: CGFloat = 8,
+        renderingMode: UIImage.RenderingMode = .alwaysOriginal
+    ) -> Self {
+        self.setImage(image.withRenderingMode(renderingMode), for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
+        self.contentHorizontalAlignment = .center
+
+        let imageWidth = self.imageView?.frame.width ?? 0
+
+        switch side {
+        case .left:
+            self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: padding)
+            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: -padding)
+        case .right:
+            self.imageEdgeInsets = UIEdgeInsets(top: 0, left: imageWidth + padding, bottom: 0, right: -imageWidth)
+            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageWidth, bottom: 0, right: imageWidth + padding)
+        }
+
+        return self
+    }
+    
+    /// 왼쪽에 UIImageView를 추가하고 레이아웃 제약조건 설정
+    @discardableResult
+    func withLeftImageView(image: UIImage, padding: CGFloat, renderingMode: UIImage.RenderingMode) -> Self {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image.withRenderingMode(renderingMode)
+        
+        self.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding)
+        ])
+        return self
+    }
+    
+    /// 오른쪽에 UIImageView를 추가하고 레이아웃 제약조건 설정
+    @discardableResult
+    func withRightImageView(image: UIImage, padding: CGFloat, renderingMode: UIImage.RenderingMode) -> Self {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image.withRenderingMode(renderingMode)
+        
+        self.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)
+        ])
+        return self
+    }
+}
+
+// MARK: - UIButton Touch Highlighting
+
+extension UIButton {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isHighlighted = true
+        super.touchesBegan(touches, with: event)
+    }
+    
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isHighlighted = false
+        super.touchesEnded(touches, with: event)
+    }
+    
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isHighlighted = false
+        super.touchesCancelled(touches, with: event)
     }
 }
