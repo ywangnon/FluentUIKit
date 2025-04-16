@@ -40,6 +40,7 @@
 | `UIImageView`   | `withImage`, `withRenderingMode`, `withContentMode`, `withRounded`, etc.          |
 | `UIStackView`   | `withSpacing`, `withAxis`, `withArrangedSubviews`, `withDistribution`, etc.       |
 | `UISwitch`      | `withIsOn`, `withTintColor`, `withOnTintColor`, `withThumbTintColor`              |
+| `UIScrollView`  | `withContentSize`, `withContentOffset`, `withContentInset`, `withIsPagingEnabled`, `withShowsScrollIndicators`, `withBounces`, `withZoomScale`, etc. |
 
 ---
 
@@ -51,7 +52,6 @@
 | `UISegmentedControl`   | `withSegments`, `withSelectedIndex`, `withTintColor` |
 | `UITextView`           | `withText`, `withFont`, `withTextColor`, `withPlaceholder` |
 | `UIPageControl`        | `withNumberOfPages`, `withCurrentPage`, `withPageIndicatorTintColor`, etc. |
-| `UIScrollView`         | `withIsPagingEnabled`, `withShowsHorizontalScrollIndicator`, `withContentInset`, etc. |
 
 ---
 
